@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BillsApp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class = '<%= controller.controller_name %>'>
+		<div id = "banner">
+			<%= @page_title || "BillSApp" %>
+			<div id = "nav">
+				<ul>
+					<li><%= link_to 'Home', root_path %></li>
+					<li><a href="http://www.../">Bills</a></li>
+				</ul>
+			</div>	
+		</div>
+
+		<div id = "main">
+			<%= yield %>
+		</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bill.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @bill.author %>
+</p>
+
+<p>
+  <strong>Limit date:</strong>
+  <%= @bill.limit_date %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>
