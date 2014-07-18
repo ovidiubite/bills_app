@@ -10,6 +10,13 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.json
   def show
+      respond_to do |format|
+      if @bill.nil?
+        format.html { redirect_to @bill, notice: 'Bill is empty'}
+      else
+        format.html { redirect_to bill_line_items_path(@bill), notice: 'Bill contains: '}
+      end  
+    end
   end
 
   # GET /bills/new
@@ -28,7 +35,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to line_items_path, notice: 'Bill was successfully created.' }
+        format.html { redirect_to new_bill_line_item_path(@bill), notice: 'Bill was successfully created.' }
         #format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }

@@ -1,12 +1,12 @@
-<h1>Listing line_items</h1>
+<h1>Items</h1>
 
-<table>
+<table align="center">
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
-      <th>Bill</th>
+      <th>Created by</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,10 +19,10 @@
         <td><%= line_item.title %></td>
         <td><%= line_item.description %></td>
         <td><%= line_item.price %></td>
-        <td><%= line_item.bill %></td>
+        <td><%= line_item.bill.author %></td>
         <td><%= link_to 'Show', line_item %></td>
         <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
-        <td><%= link_to 'Destroy', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Line item', new_line_item_path %>
+<%= link_to 'New item', new_bill_line_item_path %>

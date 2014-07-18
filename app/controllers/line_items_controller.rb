@@ -4,7 +4,8 @@ class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
   def index
-    @line_items = LineItem.all
+    @bill = Bill.find(params[:bill_id])
+    @line_items = @bill.line_items
   end
 
   # GET /line_items/1
@@ -14,7 +15,10 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/new
   def new
-    @line_item = LineItem.new
+    @bill = Bill.find(params[:bill_id])
+
+    @line_item = @bill.line_items.build
+
   end
 
   # GET /line_items/1/edit
@@ -24,11 +28,11 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
+    @line_item = LineItem.new(line_item_params.merge(bill_id: params[:bill_id]))
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to bills_path, notice: 'Line item was successfully created.' }
+        format.html { redirect_to bills_path, notice: 'Item was successfully created.' }
         #format.json { render action: 'show', status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
@@ -42,7 +46,7 @@ class LineItemsController < ApplicationController
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
-        format.html { redirect_to bills_path, notice: 'Line item was successfully updated.' }
+        format.html { redirect_to bills_path, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +60,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url }
+      format.html { redirect_to bill_line_item_path(@bill) }
       format.json { head :no_content }
     end
   end

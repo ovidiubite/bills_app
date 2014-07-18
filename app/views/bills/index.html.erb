@@ -1,11 +1,12 @@
-<h1>Listing bills</h1>
+<h1>Bills</h1>
 
-<table>
+<table align="center" >
   <thead>
-    <tr>
+    <tr >
       <th>Name</th>
       <th>Author</th>
       <th>Limit date</th>
+      <th>Total Price</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,9 +19,10 @@
         <td><%= bill.name %></td>
         <td><%= bill.author %></td>
         <td><%= bill.limit_date %></td>
+        <td><%= number_to_currency(bill.total_price) %></td>
         <td><%= link_to 'Show', bill %></td>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

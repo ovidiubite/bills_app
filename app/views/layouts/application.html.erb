@@ -9,13 +9,14 @@
 <body class = '<%= controller.controller_name %>'>
 		<div id = "banner">
 			<%= @page_title || "BillSApp" %>
-			<div id = "nav">
+			
+			</div>
+
+			<div id = "side">
 				<ul>
 					<li><%= link_to 'Home', root_path %></li>
-					<li><a href="http://www.../">Bills</a></li>
 				</ul>
-			</div>	
-		</div>
+			</div>
 
 		<div id = "main">
 			<%= yield %>

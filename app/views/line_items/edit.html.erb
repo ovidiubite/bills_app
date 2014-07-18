@@ -1,6 +1,5 @@
-<h1>Editing line_item</h1>
+<h1>Editing item</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @line_item %> |
-<%= link_to 'Back', line_items_path %>
+<%= link_to 'Back', bill_line_items_path(@line_item.bill_id, @line_item) %>
