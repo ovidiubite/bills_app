@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<p class = "notice"><%= notice %></p>
+<p class = "alert"><%= alert %></p>
   <title>BillsApp</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -10,15 +12,33 @@
 		<div id = "banner">
 			<%= @page_title || "BillSApp" %>
 			
-			</div>
+		</div>
 
 			<div id = "side">
 				<ul>
 					<li><%= link_to 'Home', root_path %></li>
+						<% if !current_user %>
+						
+						<li><%= link_to 'Register', new_user_registration_path %></li>
+						<li><%= link_to 'Sign in', new_user_session_path %></li>
+					<% else %>
+						<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+						<% if current_user.role = 'admin' %>
+						<li><%= link_to 'Show users', users_path %></li>
+						<% end %>
+					<% end %>
 				</ul>
 			</div>
 
 		<div id = "main">
+					<div id = "login">
+							<% if current_user %>
+								Welcome <%= current_user.email %>
+
+				 			<% end %>
+
+					</div>
+
 			<%= yield %>
 		</div>
 </body>

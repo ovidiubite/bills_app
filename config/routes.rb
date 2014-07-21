@@ -1,4 +1,6 @@
 BillsApp::Application.routes.draw do
+  devise_for :users
+  resources :users, :only => [:show]
   resources :line_items
 
   resources :bills do
@@ -10,10 +12,9 @@ BillsApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'bills#index', root: 'bills'
-
+   
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
+  get 'users' => 'users#index'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

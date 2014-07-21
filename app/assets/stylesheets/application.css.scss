@@ -25,12 +25,11 @@ body{
    		text-align: left;
    		font: small-caps 40px/40px "Times New Roman", serif;
    		border-style:groove;
-
-		}
+   		}
 	#side{
 						
 			float: left;
-			padding: 15px;
+			padding: 5px;
 			background: #FAFAD2;
 			position:fixed;
 			left:0;
@@ -55,7 +54,11 @@ body{
     	right:0px;
 		border-width:5px;	
 		border-style:groove;
-		   		
+		 #login{
+		 text-align: left;
+		 color: red;
+
+		 }
 	}
 	
 }
