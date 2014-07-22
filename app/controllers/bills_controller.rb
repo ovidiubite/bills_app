@@ -31,8 +31,9 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
+    
     @bill = Bill.new(bill_params)
-
+    @bill.author = current_user.email  
     respond_to do |format|
       if @bill.save
         format.html { redirect_to new_bill_line_item_path(@bill), notice: 'Bill was successfully created.' }

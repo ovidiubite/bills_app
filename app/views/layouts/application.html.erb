@@ -23,7 +23,7 @@
 						<li><%= link_to 'Sign in', new_user_session_path %></li>
 					<% else %>
 						<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-						<% if current_user.role = 'admin' %>
+						<% if current_user.role == 'admin' %>
 						<li><%= link_to 'Show users', users_path %></li>
 						<% end %>
 					<% end %>
@@ -34,8 +34,7 @@
 					<div id = "login">
 							<% if current_user %>
 								Welcome <%= current_user.email %>
-
-				 			<% end %>
+							<% end %>
 
 					</div>
 

@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -34,10 +33,14 @@ end
 
 # for authenticate
 gem 'devise'
+
 # for roles
-gem 'role_model'
-#for authorization
+# gem 'role_model'
+
+# for authorization
 gem 'cancan'
+
+gem 'rubocop'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,7 +1,8 @@
 BillsApp::Application.routes.draw do
-  devise_for :users
-  resources :users, :only => [:show]
+  devise_for :users, controllers: {registrations: 'registrations'}#, path_prefix: 'my'
   resources :line_items
+
+  resources :users
 
   resources :bills do
     resources :line_items
@@ -14,7 +15,8 @@ BillsApp::Application.routes.draw do
    root 'bills#index', root: 'bills'
    
   # Example of regular route:
-  get 'users' => 'users#index'
+   get 'users' => 'users#index'
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
