@@ -1,3 +1,8 @@
+<% if flash[:error] %>
+<p class = "error"><%= flash[:error] %></p>
+<% end %> 
+
+
 <h1>Bills</h1>
 
 <table align="center" >
@@ -21,13 +26,19 @@
         <td><%= bill.limit_date %></td>
         <td><%= number_to_currency(bill.total_price) %></td>
         <td><%= link_to 'Show', bill %></td>
+        <% if can? :update, @bill %>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Remove', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if can? :destroy, @bill %>
+        <td><%= link_to 'Remove', bill, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if can? :create, @bill %>
 <%= link_to 'New Bill', new_bill_path %>
+<% end %>

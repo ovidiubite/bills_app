@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
-<p class = "notice"><%= notice %></p>
+<% if flash[:error] %>
+<p class = "notice"><%= flash[:error]  %></p>
+<% end %> 
 <p class = "alert"><%= alert %></p>
   <title>BillsApp</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -18,10 +20,12 @@
 				<ul>
 					<li><%= link_to 'Home', root_path %></li>
 						<% if !current_user %>
-						
+					
+							
 						<li><%= link_to 'Register', new_user_registration_path %></li>
+							
 						<li><%= link_to 'Sign in', new_user_session_path %></li>
-					<% else %>
+						<% else %>
 						<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
 						<% if current_user.role == 'admin' %>
 						<li><%= link_to 'Show users', users_path %></li>

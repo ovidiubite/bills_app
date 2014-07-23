@@ -18,18 +18,19 @@ class LineItemsController < ApplicationController
     @bill = Bill.find(params[:bill_id])
 
     @line_item = @bill.line_items.build
-
+    authorize! :update, LineItem
   end
 
   # GET /line_items/1/edit
   def edit
+    authorize! :update, LineItem
   end
 
   # POST /line_items
   # POST /line_items.json
   def create
     @line_item = LineItem.new(line_item_params.merge(bill_id: params[:bill_id]))
-
+    authorize! :create, LineItem
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to bills_path, notice: 'Item was successfully created.' }
@@ -44,6 +45,7 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
+    authorize! :update, LineItem
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html { redirect_to bills_path, notice: 'Item was successfully updated.' }
@@ -58,6 +60,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    authorize! :destroy, LineItem
     @line_item.destroy
     respond_to do |format|
       format.html { redirect_to bill_line_item_path(@bill) }

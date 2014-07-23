@@ -4,5 +4,5 @@
 <%=	user.email %> - <%=	user.role %>  
  <td><%= link_to 'Remove', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> </br>
 <% end %>
-
+<td><%= link_to 'Add user', new_user_registration_path %></td> 
 

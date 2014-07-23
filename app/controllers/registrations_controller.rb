@@ -1,18 +1,24 @@
 class RegistrationsController < Devise::RegistrationsController
-
 before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+
 def index
+ # authorize! :manage, :all
 	@users = User.all
 end
-
 
 def set_user
 	@user = User.find(params[:id])
 end
 
+def new
+  @user = User.new
+end
+
+
 
 def create 
-
+  authorize! :manage, :all
  build_resource(user_params)
 
     resource_saved = resource.save
@@ -32,6 +38,7 @@ def create
       respond_with resource
     end
   end
+
 
 
 def destroy

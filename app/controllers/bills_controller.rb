@@ -1,10 +1,10 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /bills
   # GET /bills.json
   def index
-    @bills = Bill.all
+ 
   end
 
   # GET /bills/1
@@ -21,7 +21,7 @@ class BillsController < ApplicationController
 
   # GET /bills/new
   def new
-    @bill = Bill.new
+    
   end
 
   # GET /bills/1/edit
@@ -32,7 +32,7 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     
-    @bill = Bill.new(bill_params)
+
     @bill.author = current_user.email  
     respond_to do |format|
       if @bill.save
