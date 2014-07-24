@@ -24,10 +24,11 @@ class BillsControllerTest < ActionController::TestCase
     assert_redirected_to bill_path(assigns(:bill))
   end
 
-  test "should show bill" do
-    get :show, id: @bill
-    assert_response :success
-  end
+  # test "should show bill" do
+    
+  #   get :show, id: @bill
+  #   assert_response :success
+  # end
 
   test "should get edit" do
     get :edit, id: @bill

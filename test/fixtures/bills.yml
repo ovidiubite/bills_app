@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  author: MyString
-  limit_date: 2014-07-17
+  name: Something
+  author: adela@mail.com
+  limit_date: 2014-09-27
 
 two:
   name: MyString
   author: MyString
-  limit_date: 2014-07-17
+  limit_date: 2014-11-11

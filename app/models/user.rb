@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-
-has_many :bills
+  after_destroy :ensure_an_admin_remains	
+  has_many :bills
   # accepts_nested_attributes_for :bills
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,5 +9,10 @@ has_many :bills
 
 ROLES = %w[admin employee]
   
+  def ensure_an_admin_remains
+    if User.count.zero?
+      raise "Can't delete last user"
+    end
+  end
 
 end

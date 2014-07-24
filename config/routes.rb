@@ -1,8 +1,9 @@
 BillsApp::Application.routes.draw do
-  devise_for :users, controllers: {registrations: 'registrations'}#, path_prefix: 'my'
-  resources :line_items
-
+  devise_for :users, controllers: {registrations: 'registrations'}, path_prefix: 'my'
+  
   resources :users
+ 
+  resources :line_items
 
   resources :bills do
     resources :line_items

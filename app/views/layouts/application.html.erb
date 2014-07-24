@@ -1,29 +1,28 @@
  <!DOCTYPE html>
 <html>
 <head>
-<% if flash[:error] %>
-<p class = "notice"><%= flash[:error]  %></p>
-<% end %> 
-<p class = "alert"><%= alert %></p>
+
   <title>BillsApp</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class = '<%= controller.controller_name %>'>
+
 		<div id = "banner">
 			<%= @page_title || "BillSApp" %>
-			
+			<div id = "login">
+			<% if current_user %>
+				Welcome <%= current_user.email %>
+			<% end %>
+  		  </div>
 		</div>
 
 			<div id = "side">
 				<ul>
 					<li><%= link_to 'Home', root_path %></li>
 						<% if !current_user %>
-					
-							
 						<li><%= link_to 'Register', new_user_registration_path %></li>
-							
 						<li><%= link_to 'Sign in', new_user_session_path %></li>
 						<% else %>
 						<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
@@ -34,15 +33,12 @@
 				</ul>
 			</div>
 
-		<div id = "main">
-					<div id = "login">
-							<% if current_user %>
-								Welcome <%= current_user.email %>
-							<% end %>
-
-					</div>
-
-			<%= yield %>
+	  	<div id = "main">
+          <% if flash[:notice] %>
+	        <p class = "notice"><%= notice %></p>
+		  <% end %> 
+		  <p class = "alert"><%= alert %></p>		
+          <%= yield %>
 		</div>
 </body>
 </html>

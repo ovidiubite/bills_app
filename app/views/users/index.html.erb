@@ -1,8 +1,12 @@
 <h2>Users</h2>
 
+<% if notice %>
+<p id = "notice"><%= notice %></p>
+<% end %>
+
 <% @users.each do |user| %>  
 <%=	user.email %> - <%=	user.role %>  
  <td><%= link_to 'Remove', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> </br>
 <% end %>
-<td><%= link_to 'Add user', new_user_registration_path %></td> 
+<td><%= link_to 'Add user', new_user_path %></td> 
 

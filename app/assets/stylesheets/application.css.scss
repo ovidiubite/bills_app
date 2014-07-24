@@ -15,7 +15,14 @@
  
  body{
 	
-
+	#banner #login{
+		 text-align: right;
+		 color: #2F4F4F;
+		 display: inline;
+		 position: fixed;
+		 right: 15px;
+		 font-size: 20px;
+		 }
 	#banner{
 		background: #DEB887;
 		width:100%;
@@ -27,6 +34,7 @@
    		text-align: left;
    		font: small-caps 40px/40px "Times New Roman", serif;
    		border-style:groove;
+
    		}
 	#side{
 						
@@ -56,11 +64,7 @@
     	right:0px;
 		border-width:5px;	
 		border-style:groove;
-		 #login{
-		 text-align: left;
-		 color: red;
-
-		 }
+	
 	}
 	
 }

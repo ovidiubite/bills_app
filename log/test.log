@@ -1,0 +1,1035 @@
+  [1m[36m (137.2ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (119.2ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (103.7ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (122.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (121.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (116.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (100.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (98.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (87.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (98.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (89.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (98.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (89.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Qdn8.GG5yE34NfgqRHqade4KqQC4YIWgjQg7vhPcyp2HANHbt0Tiq', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Qdn8.GG5yE34NfgqRHqade4KqQC4YIWgjQg7vhPcyp2HANHbt0Tiq', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$gIzNInVv4SELDKrHZ2Czr.fzcWCwoAoYNfkYh6h5KpKSWSQR7.VvC', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$gIzNInVv4SELDKrHZ2Czr.fzcWCwoAoYNfkYh6h5KpKSWSQR7.VvC', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PR/SP.1PnSJLA4SrGxCoFODDn7vZfPSAC8g7ymFxIm318rfL2mKB2', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PR/SP.1PnSJLA4SrGxCoFODDn7vZfPSAC8g7ymFxIm318rfL2mKB2', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kicfxLNhVBiH2jTfkMYe7OlDvqEJP7TD5pBtgX9BL/RAbDDURHK4W', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kicfxLNhVBiH2jTfkMYe7OlDvqEJP7TD5pBtgX9BL/RAbDDURHK4W', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$EzDkeMBDnj10ZV633Xbi/.N2q1fdnO6DZ1c815ma3py6T9PmLsyFi', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$EzDkeMBDnj10ZV633Xbi/.N2q1fdnO6DZ1c815ma3py6T9PmLsyFi', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$OfYbHBqQT.bPUDQ2xkHxjO5S5aqfTHjr/bmdGN1p0ZHXjGgjBkdkm', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$OfYbHBqQT.bPUDQ2xkHxjO5S5aqfTHjr/bmdGN1p0ZHXjGgjBkdkm', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$i0S9rROtBDAPe.nMFK5dxOm.6eMliZB7wK7puK/eZ107QOUUIdlqC', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$i0S9rROtBDAPe.nMFK5dxOm.6eMliZB7wK7puK/eZ107QOUUIdlqC', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$WIn23RQ27DpcwtOV2be0GutjNxIXZYyQfce2n3kAl.HZkf84KKili', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$WIn23RQ27DpcwtOV2be0GutjNxIXZYyQfce2n3kAl.HZkf84KKili', '2014-07-24 13:48:02', '2014-07-24 13:48:02', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$uFBSRhpLSbr.7rMfprrGru8mpXpr77r2gLtRc1floyrFPDdM2P6vq', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$uFBSRhpLSbr.7rMfprrGru8mpXpr77r2gLtRc1floyrFPDdM2P6vq', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$O5KBW29AsFHT6IcBRs7nNuk8PyvGH9q/j5kEwjnzrYntf3RZXbld.', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$O5KBW29AsFHT6IcBRs7nNuk8PyvGH9q/j5kEwjnzrYntf3RZXbld.', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$xw9hQbk98VFH2nDzEGEy2ecZ2MB3uD6jHdpbruTZ/Jr61Ia1pvmLa', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$xw9hQbk98VFH2nDzEGEy2ecZ2MB3uD6jHdpbruTZ/Jr61Ia1pvmLa', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$sKp66xxaVAnl9/kQP.ZJ5ehpGWh7SP9mVKXMZL6W1as5zjtdA6PCm', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$sKp66xxaVAnl9/kQP.ZJ5ehpGWh7SP9mVKXMZL6W1as5zjtdA6PCm', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$pxMKnGyjUZFAzEvhPePn0OwagPecuPdmGHAff.ns/CLSyVdyRzj/.', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$pxMKnGyjUZFAzEvhPePn0OwagPecuPdmGHAff.ns/CLSyVdyRzj/.', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$61H8oqnl2ku5dDUlXUwJP.3Pd9TFAGlet3W6woa9w67HjwnCzIXEi', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$61H8oqnl2ku5dDUlXUwJP.3Pd9TFAGlet3W6woa9w67HjwnCzIXEi', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$QP8ISKPuoOf5DX55fbUcb.FrvvFNtSA4GyeIft/Z6tuJQSNIadPVi', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$QP8ISKPuoOf5DX55fbUcb.FrvvFNtSA4GyeIft/Z6tuJQSNIadPVi', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$gzSyzdtld5yOxUNclsOfYOBGrEiXUipt5lNsL6Gxp9VzZFW0JMsPC', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$gzSyzdtld5yOxUNclsOfYOBGrEiXUipt5lNsL6Gxp9VzZFW0JMsPC', '2014-07-24 13:48:03', '2014-07-24 13:48:03', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Dnr.1hnz7sUTqskMYsLnk.wajoFHmTYqKWYZKku1J3KQgNZeBImx.', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Dnr.1hnz7sUTqskMYsLnk.wajoFHmTYqKWYZKku1J3KQgNZeBImx.', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$7FCsZ38GThz6wNOa/xxb5.0LsOXx7UpNevsJY1.PVWwDcIM9CFZ22', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$7FCsZ38GThz6wNOa/xxb5.0LsOXx7UpNevsJY1.PVWwDcIM9CFZ22', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$C6o7YIxIccDlUrvSkixCqOhHHykhuhlJtCoAHqP.wfp7H9rFh3GTe', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$C6o7YIxIccDlUrvSkixCqOhHHykhuhlJtCoAHqP.wfp7H9rFh3GTe', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hwdrRbDyZnjOP8cbyckjluZxlzOFBQXaZLe9.T6WhQXxmYBAzoX6i', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hwdrRbDyZnjOP8cbyckjluZxlzOFBQXaZLe9.T6WhQXxmYBAzoX6i', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zlJXKIl9JLvBa7PjZ7WSW.TsH5Sreq9zXUsI1iHLj32NDc0fLmsTC', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)[0m
+SQLite3::SQLException: table users has no column named password_digest: INSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zlJXKIl9JLvBa7PjZ7WSW.TsH5Sreq9zXUsI1iHLj32NDc0fLmsTC', '2014-07-24 13:48:04', '2014-07-24 13:48:04', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (97.2ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (94.4ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (95.0ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (113.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (111.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (116.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (114.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (112.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (112.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (115.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (114.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (116.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (114.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$IbdQnFGICrJAhVdeFpEVfeaOdtR1wN8zcGsNfPAb/fanzQm10MpaC', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$IbdQnFGICrJAhVdeFpEVfeaOdtR1wN8zcGsNfPAb/fanzQm10MpaC', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$8nrrT58VjczKx9Jt7g4spuAi3nqgDh9VlojTITy0FgZn8KiOjT9j2', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$8nrrT58VjczKx9Jt7g4spuAi3nqgDh9VlojTITy0FgZn8KiOjT9j2', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$QuCrx4RV8Zt1Ej.jHVHsyeYNfRWBROzWosRE8emS0o/ilCqBcQ.H6', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$QuCrx4RV8Zt1Ej.jHVHsyeYNfRWBROzWosRE8emS0o/ilCqBcQ.H6', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$aDZWmF6HoqvjBOpBpZiGde77Wm3bXXPoV/Ab/orJr2kds2gZPI.xm', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$aDZWmF6HoqvjBOpBpZiGde77Wm3bXXPoV/Ab/orJr2kds2gZPI.xm', '2014-07-24 13:49:23', '2014-07-24 13:49:23', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$SNjrPYeYOUekCKFeyZzE7e6NA.t.ExFv2hI/37jJ5lIgJPNJzuHY.', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$SNjrPYeYOUekCKFeyZzE7e6NA.t.ExFv2hI/37jJ5lIgJPNJzuHY.', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$g.HNC0fhKTDkudDRJmXKBuly9hv1GF0LdwirU8AIlOcRO6.9Nyk/W', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$g.HNC0fhKTDkudDRJmXKBuly9hv1GF0LdwirU8AIlOcRO6.9Nyk/W', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$TyPVIx79YTORJ5ERm8lNQ.8mNnjBRj6Du4lvA/tWO4l9F0TycoRJW', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$TyPVIx79YTORJ5ERm8lNQ.8mNnjBRj6Du4lvA/tWO4l9F0TycoRJW', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$XiY3pKcGkLfV3EQeSO9WNO12DPQCiqs2BHkHQdXB60Q/6YcY5T8IG', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$XiY3pKcGkLfV3EQeSO9WNO12DPQCiqs2BHkHQdXB60Q/6YcY5T8IG', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$P5n8fH7Q/xye1DLNx4.yluoHxtP6xyrTYM7f.LstruHidg6/cxkWG', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$P5n8fH7Q/xye1DLNx4.yluoHxtP6xyrTYM7f.LstruHidg6/cxkWG', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$caF3FAI7bDaYEN4MGp5j9eqqQifVB2X2gXiirkJA7DHyisN/0I8Ly', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$caF3FAI7bDaYEN4MGp5j9eqqQifVB2X2gXiirkJA7DHyisN/0I8Ly', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Y9/oD9tp9y6k8ucEqyq8V.IZShuBNWbKk.jSBGeaW7X3t/voJlU6S', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Y9/oD9tp9y6k8ucEqyq8V.IZShuBNWbKk.jSBGeaW7X3t/voJlU6S', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kvykpHcIGU/JxiTDrEtt6e/s0s1mnOioIfSHxg4tYGjjsRLhzEtkC', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kvykpHcIGU/JxiTDrEtt6e/s0s1mnOioIfSHxg4tYGjjsRLhzEtkC', '2014-07-24 13:49:24', '2014-07-24 13:49:24', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$AfB.BNjXqJm2rQGJOSQgguvt6.SzXmEUTuFAyI5ZSTl8Ouev8P7Ai', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$AfB.BNjXqJm2rQGJOSQgguvt6.SzXmEUTuFAyI5ZSTl8Ouev8P7Ai', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$fAsSGlWfZsO6hoQX85dn6OLQb50.c.3M.X0d8S2jR8KyFXIXZcFGW', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$fAsSGlWfZsO6hoQX85dn6OLQb50.c.3M.X0d8S2jR8KyFXIXZcFGW', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zp3IwmB/LvzVzhHXjF4X9ezow20yH.rJzoRQRP1N.ix7bATaiC7IC', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zp3IwmB/LvzVzhHXjF4X9ezow20yH.rJzoRQRP1N.ix7bATaiC7IC', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hr/n305QApzA3OMHwRxZAujiZ4NqEH9vB9tMf3l0VU22m8dGoHYIG', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hr/n305QApzA3OMHwRxZAujiZ4NqEH9vB9tMf3l0VU22m8dGoHYIG', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Sh8arViP2aKmEyoVOhlxe.Ziub6WNYTzTMjdiojzmplcLnQze0kR2', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Sh8arViP2aKmEyoVOhlxe.Ziub6WNYTzTMjdiojzmplcLnQze0kR2', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$ZiBb4UD08Q/5thzr1HngiuoBI4nzuZdBt5eXmobxWRrhFehlKEOUq', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$ZiBb4UD08Q/5thzr1HngiuoBI4nzuZdBt5eXmobxWRrhFehlKEOUq', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$dumj45b95Mwosg8XOU1FtuwXllGG1hfT.g8/Y96hlPb5WeoKOT11q', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$dumj45b95Mwosg8XOU1FtuwXllGG1hfT.g8/Y96hlPb5WeoKOT11q', '2014-07-24 13:49:25', '2014-07-24 13:49:25', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DTm53wh0bcS3j7zzXdukj.ZmxAMw2rrOs5BhxKOq7oPkwROM/1.j2', '2014-07-24 13:49:26', '2014-07-24 13:49:26', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DTm53wh0bcS3j7zzXdukj.ZmxAMw2rrOs5BhxKOq7oPkwROM/1.j2', '2014-07-24 13:49:26', '2014-07-24 13:49:26', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$AhSJu1f55QDlbUUwkqxqWu7oaKIUzGvQxPirye35Cz9uiRI7jN5xK', '2014-07-24 13:49:26', '2014-07-24 13:49:26', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$AhSJu1f55QDlbUUwkqxqWu7oaKIUzGvQxPirye35Cz9uiRI7jN5xK', '2014-07-24 13:49:26', '2014-07-24 13:49:26', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (143.0ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (128.7ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (112.2ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (113.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (103.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (117.7ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (132.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (129.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (128.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (123.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (123.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (123.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (123.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$nuCOD9bDzhx89o88yK.Xvuo9Yq4CsLbjMne49/Erlt2xbSkkZfwqG', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$nuCOD9bDzhx89o88yK.Xvuo9Yq4CsLbjMne49/Erlt2xbSkkZfwqG', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Cuc0quweVJnGPXbhmnvV5ejjx7C54ZkYIeZyrzvBG4FOb9wW9dXKu', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Cuc0quweVJnGPXbhmnvV5ejjx7C54ZkYIeZyrzvBG4FOb9wW9dXKu', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$xeRmj7mfWkwTxbl4fIaO7.qCJCpQyZQdHEMLuWk/yXoGY/Fs12Ksi', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$xeRmj7mfWkwTxbl4fIaO7.qCJCpQyZQdHEMLuWk/yXoGY/Fs12Ksi', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$nEhb1jyRncURzlIUVUK6nOVMOmi8Ot2nek4dm0RSKaDQpxQygGfH2', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$nEhb1jyRncURzlIUVUK6nOVMOmi8Ot2nek4dm0RSKaDQpxQygGfH2', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$MVSjrGKhNtKtt8KY6vOFIOPBMcE/hbo/W.VcRbsbSaF6e6/FMRzCS', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$MVSjrGKhNtKtt8KY6vOFIOPBMcE/hbo/W.VcRbsbSaF6e6/FMRzCS', '2014-07-24 13:51:11', '2014-07-24 13:51:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DR4beBcrizLbh4ftx.tNWutivUsZWjXhsuATwz2cUlbRy7kzqEQmK', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DR4beBcrizLbh4ftx.tNWutivUsZWjXhsuATwz2cUlbRy7kzqEQmK', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$9TnVdkisBH1q/5SfK42XGOMxfPwm.bu9VhAED0TqfRqcjCabN09hS', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$9TnVdkisBH1q/5SfK42XGOMxfPwm.bu9VhAED0TqfRqcjCabN09hS', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$4H0t1GacLqfhM7DQxbhej.KTlf9Nix1z5B/faZGG/amQ3q3c96iwW', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$4H0t1GacLqfhM7DQxbhej.KTlf9Nix1z5B/faZGG/amQ3q3c96iwW', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$piEQ3z5Pax6YxE95/hodJe72dBQcz6YE2AkkXagxjs/Boq74DtT5O', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$piEQ3z5Pax6YxE95/hodJe72dBQcz6YE2AkkXagxjs/Boq74DtT5O', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DefiwmvzWImBUzK3ISlnoO3.tQ.uPWn.sBEUu.k7edkaP9axdSaue', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$DefiwmvzWImBUzK3ISlnoO3.tQ.uPWn.sBEUu.k7edkaP9axdSaue', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$vDd.7eJWqBXo0oMMDlFM/OCATQRunOtjRWsgzB.0Wb0HmC33dE8Gy', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$vDd.7eJWqBXo0oMMDlFM/OCATQRunOtjRWsgzB.0Wb0HmC33dE8Gy', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1A.K4ys1XG1s4P6L2bY1VOwha1MgteBlukcIustXY/ca3m.HE2vRW', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1A.K4ys1XG1s4P6L2bY1VOwha1MgteBlukcIustXY/ca3m.HE2vRW', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1mZGOZOSM28jKrk7uk75Z.kZmLn0iiy.Hqvt6yQtVmur50GcbXt8u', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1mZGOZOSM28jKrk7uk75Z.kZmLn0iiy.Hqvt6yQtVmur50GcbXt8u', '2014-07-24 13:51:12', '2014-07-24 13:51:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Mg2lkLxWMwH97padTrImmuLGQsTrtzuSyY7xnaktj7CefdzMn1mi2', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Mg2lkLxWMwH97padTrImmuLGQsTrtzuSyY7xnaktj7CefdzMn1mi2', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$6P/.rXOmgMN2MIBf8jB3cuj06PTXrvNucsM2rbDcNVPaKbTm0M2xm', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$6P/.rXOmgMN2MIBf8jB3cuj06PTXrvNucsM2rbDcNVPaKbTm0M2xm', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$D9ZgnZXj73IudPfCkiYhWe/VtbPrPlUxGMMcqTlb8aQRwd3ESeN1G', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$D9ZgnZXj73IudPfCkiYhWe/VtbPrPlUxGMMcqTlb8aQRwd3ESeN1G', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$q.FVQh9tIdIT0CTmkl8ufuuEnnHWhX3AKaF1ff8PRv/7oIv2J2v/y', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$q.FVQh9tIdIT0CTmkl8ufuuEnnHWhX3AKaF1ff8PRv/7oIv2J2v/y', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$VfQPpXdznblBYZqGruqVNejBhuwvCnISUWaL1dKVDr3G6fKB8m1Eq', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$VfQPpXdznblBYZqGruqVNejBhuwvCnISUWaL1dKVDr3G6fKB8m1Eq', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$5XSZHB9rYOuOa8ttevRT/emlMhZpJ3TeLm6KmK1dKF6oJrDnJPR1i', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$5XSZHB9rYOuOa8ttevRT/emlMhZpJ3TeLm6KmK1dKF6oJrDnJPR1i', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$339dKYfQRRUZ9FPGDoYdE.5iCHP8txmUm2oGdywDoXOY1jy6FBYeu', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$339dKYfQRRUZ9FPGDoYdE.5iCHP8txmUm2oGdywDoXOY1jy6FBYeu', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$39b1112Pn4c0I3qFQyFKW.W9/wyZ49uW8sJ6SUsIjISypOIIZRuSa', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$39b1112Pn4c0I3qFQyFKW.W9/wyZ49uW8sJ6SUsIjISypOIIZRuSa', '2014-07-24 13:51:13', '2014-07-24 13:51:13', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (96.0ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (103.4ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (120.4ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (113.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (111.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (126.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (124.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (112.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (112.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (98.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (99.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (114.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (114.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$4vAkNm21sRkcW.h6YeZd0ODBdrw/uGoNMcakJCfLl3mPtYnEuf3x6', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$4vAkNm21sRkcW.h6YeZd0ODBdrw/uGoNMcakJCfLl3mPtYnEuf3x6', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$JJlNuNzUEh0C274prURb/OxzMKeiLNdNi6nm10FZDxEHdXEr8NZQ6', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$JJlNuNzUEh0C274prURb/OxzMKeiLNdNi6nm10FZDxEHdXEr8NZQ6', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$D42yMpWTG8tj7sOup2Yj3OEWeQZ.i5EeeqeH/dxgkaVKAnZRs3biO', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$D42yMpWTG8tj7sOup2Yj3OEWeQZ.i5EeeqeH/dxgkaVKAnZRs3biO', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$2wBDmqX6mjRzdxTwtt13x.8n6xFjo7hKBib7dSfFVirY1ILqOnDHK', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$2wBDmqX6mjRzdxTwtt13x.8n6xFjo7hKBib7dSfFVirY1ILqOnDHK', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$ms9ebZ8vC9kmfE2aiya7seS4HDCwNk64Owk6ruyyLewE4Xf1Q7aMy', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$ms9ebZ8vC9kmfE2aiya7seS4HDCwNk64Owk6ruyyLewE4Xf1Q7aMy', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$B94HZQeaYTy/3FpeQunLJ.5aoSh.pWKwS/yjxu.FcHlvHtNuR/g1C', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$B94HZQeaYTy/3FpeQunLJ.5aoSh.pWKwS/yjxu.FcHlvHtNuR/g1C', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$2smgiMDwKfK2QkUeGtEXtu9FJ./OfKGmxfh/0tY7iUS.9phD4Peo2', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$2smgiMDwKfK2QkUeGtEXtu9FJ./OfKGmxfh/0tY7iUS.9phD4Peo2', '2014-07-24 13:55:10', '2014-07-24 13:55:10', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hvsqzG/ovuzzAbbp3SSa2uGZ5RkenWvAAgfbm5J0WxvQTt2Oz.R/u', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$hvsqzG/ovuzzAbbp3SSa2uGZ5RkenWvAAgfbm5J0WxvQTt2Oz.R/u', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Ao01dz06LGq7O5ScZzAc5.vgwKEMMR76mIQdkn8cEk7aBLqMQpilC', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$Ao01dz06LGq7O5ScZzAc5.vgwKEMMR76mIQdkn8cEk7aBLqMQpilC', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kjhhWyszJ.M260yGHjmbAud5R1tcq/DMDbcr223sJPcuWwOeo9rMe', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$kjhhWyszJ.M260yGHjmbAud5R1tcq/DMDbcr223sJPcuWwOeo9rMe', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$g7Jl0wJ419/mbC4GJ8fEc.iaveXlsuc6OweI/0.wCYdE6Xem4vmaK', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$g7Jl0wJ419/mbC4GJ8fEc.iaveXlsuc6OweI/0.wCYdE6Xem4vmaK', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1/RWvDKxLfUPOsMj.8etZu48/pxmiOBAAEi46YtZw7/pN4/uXbtfu', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1/RWvDKxLfUPOsMj.8etZu48/pxmiOBAAEi46YtZw7/pN4/uXbtfu', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PUm.a.1ub9Zx6QBjT0vwGeOul1RVBzYkgTWs9N4kiNbn/.vd.boxW', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PUm.a.1ub9Zx6QBjT0vwGeOul1RVBzYkgTWs9N4kiNbn/.vd.boxW', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$VbP3CzGcnkzpcgtVp6QRguRwOMp71zERv7354q74usJxyla/QB5yy', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$VbP3CzGcnkzpcgtVp6QRguRwOMp71zERv7354q74usJxyla/QB5yy', '2014-07-24 13:55:11', '2014-07-24 13:55:11', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PJl.bIf3SRsvikp3Kl8QRuxnJpWcqn9yWxU/l0EOqnNjr6wvxplKC', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$PJl.bIf3SRsvikp3Kl8QRuxnJpWcqn9yWxU/l0EOqnNjr6wvxplKC', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$suw/F.mlgyN7WBbvaNT5rut/55dJhUbsAoywi7MIoyidTeIvgH6gG', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$suw/F.mlgyN7WBbvaNT5rut/55dJhUbsAoywi7MIoyidTeIvgH6gG', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zyytEGw2UWIFoLMWxNh8.uZDU1DUB61GSpkE9FsVuqIFT056hVsPm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$zyytEGw2UWIFoLMWxNh8.uZDU1DUB61GSpkE9FsVuqIFT056hVsPm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$8NN3asTp3SpPKvFzoE8zp.vg13Lvxe7lkZgpqEBPr40wTZfY6PKRm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$8NN3asTp3SpPKvFzoE8zp.vg13Lvxe7lkZgpqEBPr40wTZfY6PKRm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$yMNXWlyPpLk8m1YXC9jP8uH1A9DOoZQrYsyEv56rmfHPSukcANYYu', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$yMNXWlyPpLk8m1YXC9jP8uH1A9DOoZQrYsyEv56rmfHPSukcANYYu', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1zX1Xh/HCL401YYFZy/WneWYPN2r1IuAIz.P153l6sbIUJdvLuzrm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$1zX1Xh/HCL401YYFZy/WneWYPN2r1IuAIz.P153l6sbIUJdvLuzrm', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$.Hed0I3auowako.L9MVth.oCJ4HoHG.gpwskNGYTCLQtpQ2njEoXu', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)[0m
+SQLite3::SQLException: table users has no column named password: INSERT INTO "users" ("email", "password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$.Hed0I3auowako.L9MVth.oCJ4HoHG.gpwskNGYTCLQtpQ2njEoXu', '2014-07-24 13:55:12', '2014-07-24 13:55:12', 980190962)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (113.6ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (95.0ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (112.0ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (121.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (103.6ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (105.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (125.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (120.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (120.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (123.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (123.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (123.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (123.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$4LZao8fcUaz42zyz6Ctq/e7sxSULMSNnC5RJ87I/t7kASfiP4KF2G', '2014-07-24 13:56:08', '2014-07-24 13:56:08', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('adela@mail.com', '$2a$10$rCs4T9.fIahxUwysvlWhz.jGO8qcHwI27sxzlIe8sp1Nkp0RdhiL.', '2014-07-24 13:56:08', '2014-07-24 13:56:08', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "line_items"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', NULL, 9.99, NULL, '2014-07-24 13:56:08', '2014-07-24 13:56:08', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', 'Whatever', 9.99, NULL, '2014-07-24 13:56:08', '2014-07-24 13:56:08', 298486374)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "bills"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('Something', 'adela@mail.com', '2014-09-27', '2014-07-24 13:56:08', '2014-07-24 13:56:08', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2014-11-11', '2014-07-24 13:56:08', '2014-07-24 13:56:08', 298486374)
+  [1m[36m (129.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------
+BillsControllerTest: test_should_create_bill
+--------------------------------------------
+  [1m[36mBill Load (0.4ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#create as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+BillsControllerTest: test_should_destroy_bill
+---------------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------
+BillsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  Rendered bills/_form.html.erb (64.2ms)
+Completed 500 Internal Server Error in 850ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+BillsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#index as HTML
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills"[0m
+  [1m[35mLineItem Load (0.2ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."bill_id" = ?  [["bill_id", 298486374]]
+Completed 500 Internal Server Error in 68ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+BillsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by BillsController#new as HTML
+Completed 500 Internal Server Error in 0ms
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+BillsControllerTest: test_should_show_bill
+------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.0ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+Redirected to http://test.host/bills/980190962/line_items
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+BillsControllerTest: test_should_update_bill
+--------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#update as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}, "id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/bills/980190962
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+LineItemsControllerTest: test_should_create_line_item
+-----------------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#create as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------------------
+LineItemsControllerTest: test_should_destroy_line_item
+------------------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.0ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+LineItemsControllerTest: test_should_get_edit
+---------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.0ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------
+LineItemsControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#index as HTML
+Completed 404 Not Found in 0ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+LineItemsControllerTest: test_should_get_new
+--------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by LineItemsController#new as HTML
+Completed 404 Not Found in 0ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------
+LineItemsControllerTest: test_should_show_line_item
+---------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 4ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------
+LineItemsControllerTest: test_should_update_line_item
+-----------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#update as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+--------------------------------------------
+UsersControllerTest: test_should_create_user
+--------------------------------------------
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"sam", "encrypted_password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+UsersControllerTest: test_should_destroy_user
+---------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+Processing by UsersController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+Completed 500 Internal Server Error in 0ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------
+UsersControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by UsersController#index as HTML
+Completed 500 Internal Server Error in 0ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+UsersControllerTest: test_should_get_new
+----------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by UsersController#new as HTML
+  Rendered users/_form.html.erb (35.8ms)
+Completed 500 Internal Server Error in 39ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UsersControllerTest: test_should_show_user
+------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+--------------------------------------------
+UsersControllerTest: test_should_update_user
+--------------------------------------------
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by UsersController#update as HTML
+  Parameters: {"user"=>{"email"=>"andrei@andrei.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "id"=>"980190962"}
+Completed 406 Not Acceptable in 0ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (141.4ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (122.3ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (128.6ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (129.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (136.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (111.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (149.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (120.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (111.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (114.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (117.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (114.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (106.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$e5kJgHoj2N80a1IDisEPRuz..OfPHWc8oxnc543ft91rOW6kqbyE2', '2014-07-24 14:02:41', '2014-07-24 14:02:41', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('adela@mail.com', '$2a$10$PcX3jf3pU8n7pThLFIQWU.CJM9cFewarlo5zrs/q1b5xJ7QDCRniS', '2014-07-24 14:02:41', '2014-07-24 14:02:41', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "line_items"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', NULL, 9.99, NULL, '2014-07-24 14:02:41', '2014-07-24 14:02:41', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', 'Whatever', 9.99, NULL, '2014-07-24 14:02:41', '2014-07-24 14:02:41', 298486374)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "bills"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('Something', 'adela@mail.com', '2014-09-27', '2014-07-24 14:02:41', '2014-07-24 14:02:41', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2014-11-11', '2014-07-24 14:02:41', '2014-07-24 14:02:41', 298486374)
+  [1m[36m (128.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------
+BillsControllerTest: test_should_create_bill
+--------------------------------------------
+  [1m[36mBill Load (0.2ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#create as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+BillsControllerTest: test_should_destroy_bill
+---------------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.0ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------
+BillsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  Rendered bills/_form.html.erb (69.8ms)
+Completed 500 Internal Server Error in 156ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+BillsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#index as HTML
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills"[0m
+  [1m[35mLineItem Load (0.2ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."bill_id" = ?  [["bill_id", 298486374]]
+Completed 500 Internal Server Error in 44ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+BillsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by BillsController#new as HTML
+Completed 500 Internal Server Error in 0ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+BillsControllerTest: test_should_show_bill
+------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+Redirected to http://test.host/bills/980190962/line_items
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+BillsControllerTest: test_should_update_bill
+--------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#update as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}, "id"=>"980190962"}
+  [1m[36mBill Load (0.0ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/bills/980190962
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+LineItemsControllerTest: test_should_create_line_item
+-----------------------------------------------------
+  [1m[35mLineItem Load (0.2ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#create as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------------------
+LineItemsControllerTest: test_should_destroy_line_item
+------------------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+LineItemsControllerTest: test_should_get_edit
+---------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------
+LineItemsControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#index as HTML
+Completed 404 Not Found in 0ms
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+LineItemsControllerTest: test_should_get_new
+--------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by LineItemsController#new as HTML
+Completed 404 Not Found in 0ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------
+LineItemsControllerTest: test_should_show_line_item
+---------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 4ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------
+LineItemsControllerTest: test_should_update_line_item
+-----------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#update as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (132.0ms)[0m  [1mCREATE TABLE "bills" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "author" varchar(255), "limit_date" date, "created_at" datetime, "updated_at" datetime, "user_id" integer) [0m
+  [1m[35m (127.4ms)[0m  CREATE TABLE "line_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "price" decimal, "bill_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (120.3ms)[0m  [1mCREATE INDEX "index_line_items_on_bill_id" ON "line_items" ("bill_id")[0m
+  [1m[35m (172.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime, "role" varchar(255)) 
+  [1m[36m (120.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (115.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (117.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (120.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (111.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140722080554')
+  [1m[36m (114.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140721074620')[0m
+  [1m[35m (107.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140721122806')
+  [1m[36m (114.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140717124826')[0m
+  [1m[35m (114.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140717124427')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('andrei@andrei.com', '$2a$10$mfhQbd2b6ukB70JIgiWJPumqiqDaxVgTId0qxUUXCrJfdB0dug6z6', '2014-07-24 14:07:57', '2014-07-24 14:07:57', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at", "id") VALUES ('adela@mail.com', '$2a$10$0kxbocxH0OanAE8HTfPEaetDTSCT4PbgZXp.McvxFjuvvehnAUDL6', '2014-07-24 14:07:57', '2014-07-24 14:07:57', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "line_items"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', NULL, 9.99, NULL, '2014-07-24 14:07:57', '2014-07-24 14:07:57', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "line_items" ("title", "description", "price", "bill_id", "created_at", "updated_at", "id") VALUES ('MyString', 'Whatever', 9.99, NULL, '2014-07-24 14:07:57', '2014-07-24 14:07:57', 298486374)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "bills"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('Something', 'adela@mail.com', '2014-09-27', '2014-07-24 14:07:57', '2014-07-24 14:07:57', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "bills" ("name", "author", "limit_date", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2014-11-11', '2014-07-24 14:07:57', '2014-07-24 14:07:57', 298486374)
+  [1m[36m (139.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+--------------------------------------------
+BillsControllerTest: test_should_create_bill
+--------------------------------------------
+  [1m[36mBill Load (0.2ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#create as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+BillsControllerTest: test_should_destroy_bill
+---------------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "bills"
+Processing by BillsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------
+BillsControllerTest: test_should_get_edit
+-----------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  Rendered bills/_form.html.erb (65.8ms)
+Completed 500 Internal Server Error in 151ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+BillsControllerTest: test_should_get_index
+------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#index as HTML
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills"[0m
+  [1m[35mLineItem Load (0.2ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."bill_id" = ?  [["bill_id", 298486374]]
+Completed 500 Internal Server Error in 43ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+BillsControllerTest: test_should_get_new
+----------------------------------------
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by BillsController#new as HTML
+Completed 500 Internal Server Error in 0ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+BillsControllerTest: test_should_update_bill
+--------------------------------------------
+  [1m[35mBill Load (0.1ms)[0m  SELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by BillsController#update as HTML
+  Parameters: {"bill"=>{"author"=>"adela@mail.com", "limit_date"=>"2014-09-27", "name"=>"Something"}, "id"=>"980190962"}
+  [1m[36mBill Load (0.1ms)[0m  [1mSELECT "bills".* FROM "bills" WHERE "bills"."id" = ? LIMIT 1[0m  [["id", "980190962"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/bills/980190962
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms)
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+LineItemsControllerTest: test_should_create_line_item
+-----------------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#create as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}}
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------------------
+LineItemsControllerTest: test_should_destroy_line_item
+------------------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "line_items"[0m
+Processing by LineItemsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+LineItemsControllerTest: test_should_get_edit
+---------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------
+LineItemsControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#index as HTML
+Completed 404 Not Found in 0ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+LineItemsControllerTest: test_should_get_new
+--------------------------------------------
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by LineItemsController#new as HTML
+Completed 404 Not Found in 0ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------
+LineItemsControllerTest: test_should_show_line_item
+---------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mLineItem Load (0.0ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 4ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------
+LineItemsControllerTest: test_should_update_line_item
+-----------------------------------------------------
+  [1m[36mLineItem Load (0.1ms)[0m  [1mSELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by LineItemsController#update as HTML
+  Parameters: {"line_item"=>{"bill_id"=>nil, "description"=>nil, "price"=>"9.99", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[35mLineItem Load (0.1ms)[0m  SELECT "line_items".* FROM "line_items" WHERE "line_items"."id" = ? LIMIT 1  [["id", "980190962"]]
+Completed 500 Internal Server Error in 2ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
