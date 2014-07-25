@@ -12,7 +12,7 @@
       <th>Author</th>
       <th>Limit date</th>
       <th>Total Price</th>
-      <th></th>
+      <th>Status</th>
       <th></th>
       <th></th>
     </tr>
@@ -25,6 +25,7 @@
         <td><%= bill.author %></td>
         <td><%= bill.limit_date %></td>
         <td><%= number_to_currency(bill.total_price) %></td>
+        <td><%= bill.status %></td>
         <td><%= link_to 'Show', bill %></td>
         <% if can? :update, @bill %>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
@@ -33,7 +34,11 @@
         <td><%= link_to 'Remove', bill, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
         </td>
-      </tr>
+        <% if bill.status != 'Payed'  %>
+        <td><%= link_to 'Checkout', change_status_bill_path(bill.id) %>
+        <% end %>
+        </td>
+       </tr>
     <% end %>
   </tbody>
 </table>

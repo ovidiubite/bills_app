@@ -51,7 +51,7 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
+        format.html { redirect_to bills_path, notice: 'Bill was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -71,15 +71,25 @@ class BillsController < ApplicationController
     end
   end
 
+  def change_status
+    @bill = Bill.find(params[:id])
+    @bill.status = 'Payed'
+    puts @bill.status.to_yaml
+    puts @bill.id.to_yaml
+    respond_to do |format|
+     format.html { redirect_to bills_path, notice: 'Checkout successfully.' }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_bill
     @bill = Bill.find(params[:id])
   end
-
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def bill_params
-    params.require(:bill).permit(:name, :author, :limit_date)
+    params.require(:bill).permit(:name, :author, :limit_date, :status)
   end
 end

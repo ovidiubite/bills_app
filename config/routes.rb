@@ -7,6 +7,9 @@ BillsApp::Application.routes.draw do
 
   resources :bills do
     resources :line_items
+    member do
+      get 'change_status'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -25,11 +28,11 @@ BillsApp::Application.routes.draw do
   #   resources :products
 
   # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
+     # resources :bills do
+     #   member do
+     #     get 'change_status'
+     #   end
+     # end
   #
   #     collection do
   #       get 'sold'

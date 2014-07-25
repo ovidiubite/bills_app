@@ -20,6 +20,12 @@
     <%= f.label :limit_date %><br>
     <%= f.date_select :limit_date %>
   </div>
+   
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.collection_select :status, Bill::Status, :to_s, :titleize %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
