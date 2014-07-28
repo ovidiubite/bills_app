@@ -72,8 +72,9 @@ class BillsController < ApplicationController
   end
 
   def change_status
+    authorize! :manage, Bill
     @bill = Bill.find(params[:id])
-    @bill.status = 'Payed'
+    @bill.change_status('Payed')
     puts @bill.status.to_yaml
     puts @bill.id.to_yaml
     respond_to do |format|
