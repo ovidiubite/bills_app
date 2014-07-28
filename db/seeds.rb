@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 	User.create!( email: 'admin@admin.com', password: 12345678, role: 'admin')
+#	Bill.create!( name: 'RDS', author: 'Somebody', limit_date: Date.now + 3, status: 'Waiting')
