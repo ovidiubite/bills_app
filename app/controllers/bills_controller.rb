@@ -1,3 +1,4 @@
+Mime::Type.register_alias "application/json", :jsonr, %w( text/x-json ) 
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
   #load_and_authorize_resource
@@ -72,13 +73,40 @@ class BillsController < ApplicationController
   end
 
   def change_status
-    authorize! :manage, Bill
+    #authorize! :manage, Bill
     @bill = Bill.find(params[:id])
     @bill.change_status('Paid')
-    puts @bill.status.to_yaml
-    puts @bill.id.to_yaml
+    # puts @bill.status.to_yaml
+    # puts @bill.id.to_yaml
     respond_to do |format|
      format.html { redirect_to bills_path, notice: 'Checkout successfully.' }
+    end
+  end
+  
+  def need_checkout
+    @bills = Bill.all
+    respond_to do |format|
+       @bills.each do |bill|
+        if bill.status == 'Waiting'
+            format.jsonr do
+              render :json => { 
+              :status => :ok, 
+              :message => bill.id,
+              :html => "<b>congrats</b>"
+              }.to_json
+            end
+        else 
+            format.jsonr do 
+              render :json => {
+                # :status => "fail",
+                # # :message => "Fuck",
+                # :html => "<b>congrats</b>"
+              }.to_json
+        end
+            
+        end
+      end
+         
     end
   end
 

@@ -9,10 +9,16 @@ class Bill < ActiveRecord::Base
     line_items.to_a.sum{ |item| item.price}
   end
 
-   def change_status(status)
+  def change_status(status)
    	self.status = status
    	save
-   end
+  end
+
+  # def checkout
+  #   @bills = B    
+
+    
+
   	
 
 

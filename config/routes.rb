@@ -10,6 +10,9 @@ BillsApp::Application.routes.draw do
     member do
       get 'change_status'
     end
+    collection do
+      get 'need_checkout'
+     end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

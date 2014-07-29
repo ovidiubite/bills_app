@@ -34,8 +34,8 @@
         <td><%= link_to 'Remove', bill, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
         </td>
-        <% if bill.status != 'Payed'  %>
-        <td><%= link_to 'Checkout', change_status_bill_path(bill.id) %>
+        <% if(bill.status != 'Paid')&&(can? :update, @bill) %>
+          <td><%= link_to 'Checkout', change_status_bill_path(bill.id) %>
         <% end %>
         </td>
        </tr>
