@@ -1,4 +1,3 @@
-Mime::Type.register_alias "application/json", :jsonr, %w( text/x-json ) 
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
   #load_and_authorize_resource
@@ -84,29 +83,14 @@ class BillsController < ApplicationController
   end
   
   def need_checkout
-    @bills = Bill.all
-    respond_to do |format|
-       @bills.each do |bill|
-        if bill.status == 'Waiting'
-            format.jsonr do
-              render :json => { 
-              :status => :ok, 
-              :message => bill.id,
-              :html => "<b>congrats</b>"
-              }.to_json
-            end
-        else 
-            format.jsonr do 
-              render :json => {
-                # :status => "fail",
-                # # :message => "Fuck",
-                # :html => "<b>congrats</b>"
-              }.to_json
-        end
-            
-        end
-      end
-         
+    @bills = Bill.where(status: 'Waiting')
+    @bills.order('bills.updated_at DESC ')
+    # ok = 0
+    # .map{|b| {id: b.id}}
+    render json: @bills.pluck(:id)
+    if @bills.any?
+    @bills[0].status = 'Processing'
+    @bills[0].save
     end
   end
 

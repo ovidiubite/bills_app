@@ -14,13 +14,4 @@ class Bill < ActiveRecord::Base
    	save
   end
 
-  # def checkout
-  #   @bills = B    
-
-    
-
-  	
-
-
-
 end
