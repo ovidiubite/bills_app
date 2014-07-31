@@ -4,7 +4,7 @@ class Bill < ActiveRecord::Base
 
   validates :name, :limit_date, :status, presence: true
  
-  Status = %w[Waiting Paid]
+  Status = %w[Uncategorized Waiting Paid]
   def total_price
     line_items.to_a.sum{ |item| item.price}
   end

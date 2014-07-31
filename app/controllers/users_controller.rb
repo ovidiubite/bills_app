@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #load_and_authorize_resource
+  # load_and_authorize_resource
 
   def index
-  	authorize! :manage, :all
-  	@users = User.all.order(:role)
+    authorize! :manage, :all
+    @users = User.all.order(:role)
   end
 
   def set_user
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	authorize! :manage, :all
+    authorize! :manage, :all
     @user = User.create(user_params)
     # @user.role = current_user.role
     respond_to do |format|
@@ -29,13 +29,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-  	authorize! :manage, :all   
+    authorize! :manage, :all   
     @user = User.find(params[:id])
     begin
       @user.destroy
       flash[:notice] = "User #{@user.email} deleted"
     rescue StandardError => e
-  	  flash[:notice] = e.message
+      flash[:notice] = e.message
     end
     respond_to do |format|
       format.html { redirect_to users_path }
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-   	  if params[:user][:password].blank?
+      if params[:user][:password].blank?
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end

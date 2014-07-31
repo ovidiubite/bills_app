@@ -1,26 +1,22 @@
 class RegistrationsController < Devise::RegistrationsController
-before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def index
+    # authorize! :manage, :all
+    @users = User.all
+  end
 
-def index
- # authorize! :manage, :all
-	@users = User.all
-end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-def set_user
-	@user = User.find(params[:id])
-end
+  def new
+    @user = User.new
+  end
 
-def new
-  @user = User.new
-end
-
-
-
-def create 
-  authorize! :manage, :all
- build_resource(user_params)
-
+  def create
+    authorize! :manage, :all
+    build_resource(user_params)
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved
@@ -39,18 +35,15 @@ def create
     end
   end
 
-
-
-def destroy
-	@user.destroy
+  def destroy
+    @user.destroy
     respond_to do |format|
       format.html { redirect_to users_path }
       format.json { head :no_content }
     end
-end
+  end
 
-def user_params
-	params.require(:user).permit(:role, :email, :password, :password_confirmation)
-end
-
+  def user_params
+    params.require(:user).permit(:role, :email, :password, :password_confirmation)
+  end
 end

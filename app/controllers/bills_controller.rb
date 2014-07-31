@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-  #load_and_authorize_resource
+  # load_and_authorize_resource
   # GET /bills
   # GET /bills.json
   def index
@@ -38,7 +38,6 @@ class BillsController < ApplicationController
     respond_to do |format|
       if @bill.save
         format.html { redirect_to new_bill_line_item_path(@bill), notice: 'Bill was successfully created.' }
-        # format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
@@ -72,25 +71,41 @@ class BillsController < ApplicationController
   end
 
   def change_status
-    #authorize! :manage, Bill
     @bill = Bill.find(params[:id])
     @bill.change_status('Paid')
-    # puts @bill.status.to_yaml
-    # puts @bill.id.to_yaml
     respond_to do |format|
-     format.html { redirect_to bills_path, notice: 'Checkout successfully.' }
+      format.html { redirect_to bills_path, notice: 'Checkout successfully.' }
     end
   end
-  
+
+  def change_status_failed
+    @bill = Bill.find(params[:id])
+    @bill.change_status('Payment Failed')
+    respond_to do |format|
+      format.html { redirect_to bills_path, notice: 'Checkout Failed.' }
+    end
+  end
+
   def need_checkout
-    @bills = Bill.where(status: 'Waiting')
-    @bills.order('bills.updated_at DESC ')
-    # ok = 0
+    @bills = Bill.all
+    @bills_wait = @bills.where(status: 'Waiting')
+    # @bills_proc = @bills.where(status: 'Processing')
+    # @bills_proc.order('bills.updated_at DESC ')
+    @bills_wait.order('bills.updated_at DESC ')
     # .map{|b| {id: b.id}}
-    render json: @bills.pluck(:id)
-    if @bills.any?
-    @bills[0].status = 'Processing'
-    @bills[0].save
+    render json: @bills_wait.pluck(:id)
+    if @bills_wait.any?
+      if@bills_wait[0].status == 'Waiting'
+        @bills_wait[0].status = 'Processing'
+        @bills_wait[0].save
+      end
+    # elsif @bills_proc.any?
+    #   @bills_proc.each do |bill|
+    #     if bill.status == 'Processing'
+    #       bill.status = 'Payment Failed'
+    #       bill.save
+    #     end
+    #   end
     end
   end
 
@@ -100,7 +115,7 @@ class BillsController < ApplicationController
   def set_bill
     @bill = Bill.find(params[:id])
   end
-  
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def bill_params
     params.require(:bill).permit(:name, :author, :limit_date, :status)

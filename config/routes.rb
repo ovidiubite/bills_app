@@ -10,6 +10,9 @@ BillsApp::Application.routes.draw do
     member do
       get 'change_status'
     end
+     member do
+      get 'change_status_failed'
+    end
     collection do
       get 'need_checkout'
      end
